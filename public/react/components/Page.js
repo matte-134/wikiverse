@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 export const Page = (props) => {
-
+const [isShown, setIsShown] = useState(false)
   return <>
-    <h2>{props.page.title}</h2>
-      <h3>{props.page.author}</h3>
+    <h2 onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)}>{props.page.title}</h2>
+    {isShown && (
       <p>{props.page.content}</p>
+    )}
   </>
 } 
 	
