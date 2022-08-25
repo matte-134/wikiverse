@@ -9,5 +9,12 @@ main {
   height: 100vh;
 }
 
+.newForm {
+  display: flex;
+  flex-direction: column;
+}
+input, select, button {
+  margin: 10px;
+}
 
 /*# sourceMappingURL=/style.e308ff8e.css.map */

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PagesList } from './PagesList';
+import {Form} from './Form'
 
 // import and prepend the api url to any fetch calls
 import apiURL from '../api';
@@ -7,6 +8,7 @@ import apiURL from '../api';
 export const App = () => {
 
 	const [pages, setPages] = useState([]);
+	const [forms, setForms] = useState(false)
 
 	async function fetchPages(){
 		try {
@@ -23,10 +25,12 @@ export const App = () => {
 	}, []);
 
 	return (
-		<main>	
-      <h1>WikiVerse</h1>
+		<main>	 
+      		<h1>WikiVerse</h1>
 			<h2>An interesting 📚</h2>
 			<PagesList pages={pages} />
+			<button onClick={() => setForms(!forms)}>Click here to add new Page</button>
+			{forms ? <Form /> : null} 
 		</main>
 	)
 }
