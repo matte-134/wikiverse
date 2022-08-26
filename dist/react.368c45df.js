@@ -30356,13 +30356,16 @@ var Page = function Page(props) {
       setIsShown = _useState2[1];
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h2", {
+    className: "articleTitle",
     onMouseEnter: function onMouseEnter() {
       return setIsShown(true);
     },
     onMouseLeave: function onMouseLeave() {
       return setIsShown(false);
     }
-  }, props.page.title), isShown && /*#__PURE__*/_react.default.createElement("p", null, props.page.content));
+  }, props.page.title), isShown && /*#__PURE__*/_react.default.createElement("p", {
+    className: "article"
+  }, props.page.content));
 };
 
 exports.Page = Page;
@@ -30462,6 +30465,8 @@ var _api = _interopRequireDefault(require("../api"));
 
 var _seedData = _interopRequireDefault(require("../../../server/seedData"));
 
+var _App = require("./App");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
@@ -30494,30 +30499,35 @@ var Form = function Form() {
       selectUsers = _useState2[0],
       setSelectUsers = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(''),
+  var _useState3 = (0, _react.useState)(pages),
       _useState4 = _slicedToArray(_useState3, 2),
-      getEmail = _useState4[0],
-      setGetEmail = _useState4[1];
+      pages = _useState4[0],
+      setPages = _useState4[1];
 
-  var _useState5 = (0, _react.useState)(pages),
+  var _useState5 = (0, _react.useState)(''),
       _useState6 = _slicedToArray(_useState5, 2),
-      pages = _useState6[0],
-      setPages = _useState6[1];
+      title = _useState6[0],
+      setTitle = _useState6[1];
 
   var _useState7 = (0, _react.useState)(''),
       _useState8 = _slicedToArray(_useState7, 2),
-      title = _useState8[0],
-      setTitle = _useState8[1];
+      content = _useState8[0],
+      setContent = _useState8[1];
 
   var _useState9 = (0, _react.useState)(''),
       _useState10 = _slicedToArray(_useState9, 2),
-      content = _useState10[0],
-      setContent = _useState10[1];
+      name = _useState10[0],
+      setName = _useState10[1];
 
   var _useState11 = (0, _react.useState)(''),
       _useState12 = _slicedToArray(_useState11, 2),
-      name = _useState12[0],
-      setName = _useState12[1];
+      user = _useState12[0],
+      setUser = _useState12[1];
+
+  var _useState13 = (0, _react.useState)(''),
+      _useState14 = _slicedToArray(_useState13, 2),
+      email = _useState14[0],
+      setEmail = _useState14[1];
 
   var getusers = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -30549,11 +30559,10 @@ var Form = function Form() {
     return function getusers() {
       return _ref.apply(this, arguments);
     };
-  }();
+  }(); // const findEmail = () => {
+  // 	setGetEmail(user.email)
+  // }
 
-  var findEmail = function findEmail() {
-    setGetEmail(user.email);
-  };
 
   (0, _react.useEffect)(function () {
     getusers();
@@ -30562,10 +30571,10 @@ var Form = function Form() {
   // 		return selectUsers.email
   // 	}
   // }
-
-  var handleChange = function handleChange(e) {
-    setName(e.target.value); // setGetEmail(selectUsers.find(findE({name})))
-  };
+  // const handleChange = (e) => {
+  // 	setName(e.target.value)
+  // setGetEmail(selectUsers.find(findE({name})))
+  // }
 
   var handleSubmit = function handleSubmit(ev) {
     ev.preventDefault();
@@ -30587,7 +30596,7 @@ var Form = function Form() {
                   },
                   body: JSON.stringify({
                     'name': name,
-                    'email': '',
+                    'email': email,
                     'title': title,
                     'content': content
                   }) // const data = await res.json()
@@ -30626,29 +30635,34 @@ var Form = function Form() {
     type: "text",
     placeholder: "title",
     value: title
-  }), /*#__PURE__*/_react.default.createElement("select", {
-    onChange: handleChange,
-    value: name
-  }, /*#__PURE__*/_react.default.createElement("option", {
-    value: "default"
-  }, "Select Name"), selectUsers.map(function (user) {
-    return /*#__PURE__*/_react.default.createElement("option", {
-      value: user.name
-    }, user.name);
-  })), /*#__PURE__*/_react.default.createElement("input", {
+  }), /*#__PURE__*/_react.default.createElement("input", {
     onChange: function onChange(e) {
       return setContent(e.target.value);
     },
     type: "text",
     placeholder: "content",
     value: content
+  }), /*#__PURE__*/_react.default.createElement("input", {
+    onChange: function onChange(e) {
+      return setUser(e.target.value);
+    },
+    type: "text",
+    placeholder: "username",
+    value: user
+  }), /*#__PURE__*/_react.default.createElement("input", {
+    onChange: function onChange(e) {
+      return setEmail(e.target.value);
+    },
+    type: "text",
+    placeholder: "email",
+    value: email
   }), /*#__PURE__*/_react.default.createElement("button", {
     type: "submit"
   }, "Submit")));
 };
 
 exports.Form = Form;
-},{"react":"../node_modules/react/index.js","../api":"react/api.js","../../../server/seedData":"../server/seedData.js"}],"react/components/App.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../api":"react/api.js","../../../server/seedData":"../server/seedData.js","./App":"react/components/App.js"}],"react/components/App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30745,7 +30759,11 @@ var App = function App() {
   (0, _react.useEffect)(function () {
     fetchPages();
   }, []);
-  return /*#__PURE__*/_react.default.createElement("main", null, /*#__PURE__*/_react.default.createElement("h1", null, "WikiVerse"), /*#__PURE__*/_react.default.createElement("h2", null, "An interesting \uD83D\uDCDA"), /*#__PURE__*/_react.default.createElement(_PagesList.PagesList, {
+  return /*#__PURE__*/_react.default.createElement("main", null, /*#__PURE__*/_react.default.createElement("h1", {
+    className: "title"
+  }, "WikiVerse"), /*#__PURE__*/_react.default.createElement("h2", {
+    className: "header"
+  }, "An interesting \uD83D\uDCDA"), /*#__PURE__*/_react.default.createElement(_PagesList.PagesList, {
     pages: pages
   }), /*#__PURE__*/_react.default.createElement("button", {
     onClick: function onClick() {
@@ -30797,7 +30815,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61402" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50037" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

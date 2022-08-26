@@ -26,8 +26,8 @@ export const App = () => {
 
 	return (
 		<main>	 
-      		<h1>WikiVerse</h1>
-			<h2>An interesting 📚</h2>
+      		<h1 className='title'>WikiVerse</h1>
+			<h2 className='header'>An interesting 📚</h2>
 			<PagesList pages={pages} />
 			<button onClick={() => setForms(!forms)}>Click here to add new Page</button>
 			{forms ? <Form /> : null} 
